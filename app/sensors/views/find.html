@@ -1,0 +1,57 @@
+<head>
+  <link rel="stylesheet" type="text/css" href="application.css">
+  <link rel="stylesheet" href="http://code.ionicframework.com/1.0.0-beta.1/css/ionic.css">
+  <script src="http://localhost/cordova.js"></script>
+  <script src="/components/steroids-js/steroids.js"></script>
+  <script src="application.js"></script>
+</head>
+<div ng-controller="cGeolocationController">
+<super-navbar>
+    <super-navbar-title>
+      Contacts
+    </super-navbar-title>
+  </super-navbar>
+<body class="content">
+  <c-google-maps position="position"></c-google-maps>
+  <div id="map"></div>
+  <div class="padding">
+    <button ng-click="getPosition()" class="upd button button-block button-positive">
+      Get Position
+    </button>
+    <a class="button button-positive button-block" onClick="pick()">
+    Pick contact</a>
+    <a class="button button-positive button-block" onClick="findContacts()">
+    Find all contacts</a>
+    <a class="button button-positive button-block" onClick="findMappedContacts()">
+    Find mapped contacts</a>
+    <script>/*
+    function findMappedContacts() {
+    var options = new ContactFindOptions();
+    options.filter = ",";
+    options.multiple = true
+    var fields = ["displayName", "name", "note"]
+    navigator.contacts.find(fields, onSuccess, onError, options)
+    }
+    function onSuccess(contacts) {
+    for (var i = 0; i < contacts.length; i++) {
+        navigator.notification.alert("Note = " + contacts[i].note)
+    }
+    }
+    function pick(){
+      navigator.contacts.pickContact(function(contact){
+        navigator.notification.alert("Note = " + getNoteCoordinates(contact));        
+      },function(err){
+        console.log('Error: ' + err);
+      });
+    }
+    function getNoteCoordinates(contact){
+      var comma = contact.note.indexOf(",");
+      var lat = contact.note.substring(0, comma );
+      var lon = contact.note.substring(comma+2, contact.note.length);
+      var latlng = new google.maps.LatLng(lat, lon);
+      return latlng;
+    }*/
+    </script>
+  </div>
+</body>
+</div>

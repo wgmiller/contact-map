@@ -1,0 +1,98 @@
+<div ng-controller="GeolocationController">
+  <super-navbar>
+    <super-navbar-title>
+      Add Contact
+    </super-navbar-title>
+  </super-navbar>
+
+  <kitchensink-google-maps position="position"></kitchensink-google-maps>
+
+  <div class="padding">
+    <!--<div class="loading-message" ng-show="isWatchingPosition || isGettingPosition">
+      <img src="/icons/loading.svg" height="26" alt=""> {{isWatchingPosition? "Continuously watching position..." : "Getting position..."}}
+    </div>
+    <div class="loading-message" ng-hide="isWatchingPosition || isGettingPosition">
+      Ready!
+    </div>-->
+
+    
+
+    <table id="tbl" class="geolocation-table">
+      <tr>
+        <td>Latitude</td>
+        <td id="lat" onClick="getPosition()">{{position.latitude}}</td>
+      </tr>
+      <tr>
+        <td>Longitude</td>
+        <td id="lon">{{position.longitude}}</td>
+      </tr>
+    </table>
+
+    <br>
+
+  <form>
+    <label for="first">First Name:</label>
+    <input type="text" id="first" style="border-style:solid;border-width: 3px;"/>
+    <label for="phone">Phone #:</label>
+    <input type="text" id="phone" style="border-style:solid;border-width: 3px;"/>
+  </form>  
+
+  <button class="button button-block button-positive" onClick="saveContact()">Save</button>
+
+  <!--
+  <button ng-click="getPosition()" class="button button-block button-positive" ng-disabled="isGettingPosition || isWatchingPosition">
+      Get Position
+  </button>
+  
+    <button ng-click="toggleWatch()" class="button button-block" ng-class="{'button-positive': !isWatchingPosition, 'button-assertive': isWatchingPosition}">
+      {{isWatchingPosition ? "Stop watching position" : "Watch for changes in position"}}
+    </button>
+    -->
+    <script>
+    /*window.onload=function()
+    {
+      document.addEventListener("deviceready", onDeviceReady, false);
+    }
+    function onDeviceReady()
+    { 
+      document.getElementById('tbl').addEventListener('click', getPosition, false);
+      //document.getElementById('btnSave').addEventListener('click', saveContact, false);
+    }*/
+    function saveContact()
+    {
+      var lat = document.getElementById("lat");
+      var lon = document.getElementById("lon");
+      var firstName = document.getElementById("first").value;
+      var phoneNum = document.getElementById("phone").value;
+      var theContact = navigator.contacts.create({"displayName" : firstName});
+      theContact.note = lat.textContent + ", " + lon.textContent;
+      var name = new ContactName();
+      name.givenName = firstName;
+      theContact.name = name;
+      var phoneNumbers = [];
+      phoneNumbers[0] = new ContactField('mobile', phoneNum, true);
+      theContact.phoneNumbers = phoneNumbers;
+
+      /*var addresses = [];
+      addresses[0] = new ContactAddress('home', phoneNum, true);
+      addresses[0].streetAddress = phoneNum;
+      theContact.addresses = addresses;*/
+      
+      theContact.save();
+      navigator.notification.alert(firstName + " Has been saved")
+    }
+    /*function getAddress(){
+      var geocoder  = new google.maps.Geocoder();             // create a geocoder object
+      var location  = new google.maps.LatLng(position.coords.latitude, position.coords.longitude);    // turn coordinates into an object          
+      geocoder.geocode({'latLng': location}, function (results, status) {
+      if(status == google.maps.GeocoderStatus.OK) {           // if geocode success
+      var add=results[0].formatted_address;         // if address found, pass to processing function
+    }
+    }
+      document.write(add);
+    }*/
+    </script>
+
+  </div>
+
+</div>

@@ -1,0 +1,49 @@
+.supersonic-navbar-mock {
+  background-color: #00B5FF !important;
+  text-align: center;
+  font-weight: 600;
+}
+
+.g-maps-container {
+  position: relative;
+  width: 100%;
+  padding-bottom: 150%;
+  background-color: #f4f4f4;
+}
+.g-maps-container > div {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+}
+
+.google-maps-container {
+  position: relative;
+  width: 100%;
+  padding-bottom: 60%;
+  background-color: #f4f4f4;
+}
+
+.google-maps-container > div {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+}
+
+.geolocation-table tr td:first-child {
+  padding-right: 10px;
+  text-align: right;
+  border-right: 1px solid #ccc;
+  font-weight: bold;
+}
+
+.geolocation-table tr td:last-child {
+  padding-left: 10px;
+}
+input {
+  width: 300px;
+}
+.upd {
+  position: absolute;
+  bottom: 100px;
+  width: 150px;
+}

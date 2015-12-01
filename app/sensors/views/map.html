@@ -1,0 +1,41 @@
+<div ng-controller="GeolocationController">
+  <super-navbar>
+    <super-navbar-title>
+      Contact Map
+    </super-navbar-title>
+  </super-navbar>
+
+  <kitchensink-google-maps position="position"></kitchensink-google-maps>
+
+  <div class="padding">
+    <!--<div class="loading-message" ng-show="isWatchingPosition || isGettingPosition">
+      <img src="/icons/loading.svg" height="26" alt=""> {{isWatchingPosition? "Continuously watching position..." : "Getting position..."}}
+    </div>
+    <div class="loading-message" ng-hide="isWatchingPosition || isGettingPosition">
+      Ready!
+    </div>-->
+
+    <br>
+
+    <table id="tbl" class="geolocation-table">
+      <tr>
+        <td>Latitude</td>
+        <td id="lat" onClick="getPosition()">{{position.latitude}}</td>
+      </tr>
+      <tr>
+        <td>Longitude</td>
+        <td id="lon">{{position.longitude}}</td>
+      </tr>
+    </table>
+
+    <br>
+  <button ng-click="getPosition()" class="button button-block button-positive" ng-disabled="isGettingPosition || isWatchingPosition">
+      Get Position
+  </button>
+
+    <button ng-click="toggleWatch()" class="button button-block" ng-class="{'button-positive': !isWatchingPosition, 'button-assertive': isWatchingPosition}">
+      {{isWatchingPosition ? "Stop watching position" : "Watch for changes in position"}}
+    </button>
+  </div>
+
+</div>
